@@ -50,6 +50,7 @@ public class Dados {
 			System.err.print("Fail!"); 
 			System.err.println(e.getMessage()); 
 		}
+		OpenMainMenu();
 	}
 	
 	public void ReadData(){
@@ -66,6 +67,7 @@ public class Dados {
 			System.err.println("Fail!");
 			e.getMessage();
 		}
+		OpenMainMenu();
 	}
 	
 	public void UpdateData(){
@@ -77,7 +79,7 @@ public class Dados {
 	}
 	
 	public void OpenMainMenu(){
-		System.out.print("|1 - Inserir novos dados\n|2 - Listar dados\n|3 - Atualizar dados\n|4 - Deletar Dados\n|5 - Sair\nInsira a opcao desejada: ");
+		System.out.print("\n|1 - Inserir novos dados\n|2 - Listar dados\n|3 - Atualizar dados\n|4 - Deletar Dados\n|5 - Sair\nInsira a opcao desejada: ");
 		int op = scanf.nextInt();
 		System.out.println("");
 		switch (op) {
@@ -89,7 +91,8 @@ public class Dados {
 		break;
 		case 4: DeleteData();
 		break;
-		case 5: System.exit(0);	
+		case 5:System.err.println("Adeus!"); 
+			System.exit(0);	
 		break;
 		default: System.err.println("Opcao invalida");
 		break;
