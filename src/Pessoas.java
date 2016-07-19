@@ -1,4 +1,4 @@
 
-public class Pessoas extends Dados{
+public class Pessoas{
 
 }
