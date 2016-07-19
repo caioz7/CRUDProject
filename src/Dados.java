@@ -13,7 +13,6 @@ public class Dados {
 	
 	Scanner scanf = new Scanner(System.in);
 	Connection conexao;
-	String servidorBanco,nomeBanco,usuarioBanco,senhaBanco;
 
 	public void StartConnection(){
 
@@ -25,10 +24,6 @@ public class Dados {
 		String usuarioBanco = scanf.next();
 		System.out.print("Insira a senha do usuario " + usuarioBanco + " : ");
 		String senhaBanco = scanf.next();
-		this.servidorBanco = servidorBanco;
-		this.nomeBanco = nomeBanco;
-		this.usuarioBanco = usuarioBanco;
-		this.senhaBanco = senhaBanco;
 
 		try{
 			conexao = DriverManager.getConnection("jdbc:mysql://"+servidorBanco+"/"+nomeBanco,usuarioBanco,senhaBanco);
