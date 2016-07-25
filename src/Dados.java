@@ -89,7 +89,7 @@ public class Dados {
 			System.err.println("Nome nao encontrado!");
 			e.getMessage();
 		}
-		
+
 	}
 	public void UpdateData(String nome){
 		System.out.print("Insira um novo nome: ");
@@ -110,7 +110,20 @@ public class Dados {
 	}
 
 	public void DeleteData(){
-		System.out.println("Esta opcao representa a remocao de dados");
+
+		System.out.print("insira o nome da pessoa a ser apagada: ");
+		String nameSearch = scanf.next();
+		String sqlDelete = "DELETE FROM Clientes where nome like '%"+ nameSearch + "%';";
+		
+		try {
+			PreparedStatement deletaPessoa = conexao.prepareStatement(sqlDelete);
+			deletaPessoa.executeUpdate();
+		} catch (Exception e) {
+			System.err.println("Erro!");
+			e.getMessage();
+		}
+		System.out.println("Apagado com sucesso!\n");
+		OpenMainMenu();
 	}
 
 	public void OpenMainMenu(){
