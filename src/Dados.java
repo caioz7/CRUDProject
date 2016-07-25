@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Dados {
-	
+
 	Scanner scanf = new Scanner(System.in);
 	Connection conexao;
 
@@ -52,7 +52,7 @@ public class Dados {
 		}
 		OpenMainMenu();
 	}
-	
+
 	public void ReadData(){
 		PreparedStatement pesquisa;
 		try {
@@ -60,6 +60,7 @@ public class Dados {
 			ResultSet resultado = pesquisa.executeQuery();
 			while(resultado.next()){
 				String nome = resultado.getString("nome");
+
 				String idade = resultado.getString("idade");
 				System.out.println("Nome: " + nome + "\tIdade: " + idade);
 			}
@@ -69,15 +70,49 @@ public class Dados {
 		}
 		OpenMainMenu();
 	}
-	
-	public void UpdateData(){
-		System.out.println("Esta opcao representa a alteracao de dados e retorna os dados atualizados");
+
+	public void SearchData(){
+		PreparedStatement pesquisa;
+		System.out.println("insira o nome da Pessoa a ser pesquisada");
+		String nameSearch = scanf.next();
+		try{
+			pesquisa = conexao.prepareStatement("select * from Clientes where nome like ('%"+nameSearch+"%');");
+			ResultSet resultado = pesquisa.executeQuery();
+			while(resultado.next()){
+				String nome = resultado.getString("nome");
+
+				String idade = resultado.getString("idade");
+				System.out.println("Nome: " + nome + "\tIdade: " + idade);
+				UpdateData(nome);
+			}
+		}catch (Exception e) {
+			System.err.println("Nome nao encontrado!");
+			e.getMessage();
+		}
+		
 	}
-	
+	public void UpdateData(String nome){
+		System.out.print("Insira um novo nome: ");
+		scanf.nextLine();
+		String novoNome = scanf.nextLine();
+		System.out.print("Insira a nova idade: ");
+		int novaIdade = scanf.nextInt();
+		String sql = "UPDATE  Clientes SET nome = '"+ novoNome +"', idade ="+ novaIdade +" where nome ='"+ nome +"';";
+		try {
+			PreparedStatement update = conexao.prepareStatement(sql);
+			update.executeUpdate();
+		} catch (Exception e) {
+			System.err.println("Erro!");
+			e.getMessage();
+		}
+		System.out.println("Atualizado com sucesso!\n");
+		OpenMainMenu();
+	}
+
 	public void DeleteData(){
 		System.out.println("Esta opcao representa a remocao de dados");
 	}
-	
+
 	public void OpenMainMenu(){
 		System.out.print("\n|1 - Inserir novos dados\n|2 - Listar dados\n|3 - Atualizar dados\n|4 - Deletar Dados\n|5 - Sair\nInsira a opcao desejada: ");
 		int op = scanf.nextInt();
@@ -87,12 +122,12 @@ public class Dados {
 		break;
 		case 2: ReadData();
 		break;
-		case 3: UpdateData();
+		case 3: SearchData();
 		break;
 		case 4: DeleteData();
 		break;
 		case 5:System.err.println("Adeus!"); 
-			System.exit(0);	
+		System.exit(0);	
 		break;
 		default: System.err.println("Opcao invalida");
 		break;
