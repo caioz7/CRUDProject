@@ -14,20 +14,21 @@ public class Dados {
 	Scanner scanf = new Scanner(System.in);
 	Connection conexao;
 
-	public void StartConnection(){
+	public void StartConnection(String servidorBanco, String nomeBanco, String usuarioBanco, String senhaBanco){
 
-		System.out.print("Insira o servidor: ");
-		String servidorBanco = scanf.next();
+		/*System.out.print("Insira o servidor: ");
+		servidorBanco = scanf.next();
 		System.out.print("Insira o nome do Banco de Dados: ");
-		String nomeBanco = scanf.next();
+		nomeBanco = scanf.next();
 		System.out.print("Insira o usuario do Banco de Dados: ");
-		String usuarioBanco = scanf.next();
+		usuarioBanco = scanf.next();
 		System.out.print("Insira a senha do usuario " + usuarioBanco + " : ");
-		String senhaBanco = scanf.next();
-
+		senhaBanco = scanf.next();
+		 */
 		try{
 			conexao = DriverManager.getConnection("jdbc:mysql://"+servidorBanco+"/"+nomeBanco,usuarioBanco,senhaBanco);
 			System.out.println("");
+			OpenMainMenu();
 
 		}catch(Exception e){
 			System.err.println("Falha na conexao!"); 
