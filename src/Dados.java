@@ -6,9 +6,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 /**
  * @author caio.dantas
- * Classe responsavel pola conexao com o servidor MySQL e manipulacao dos dados.
+ * @Resumo Classe responsavel pola conexao com o servidor MySQL e manipulacao dos dados.
  */
-
 public class Dados {
 
 	Scanner scanf = new Scanner(System.in);
@@ -16,15 +15,6 @@ public class Dados {
 
 	public void StartConnection(String servidorBanco, String nomeBanco, String usuarioBanco, String senhaBanco){
 
-		/*System.out.print("Insira o servidor: ");
-		servidorBanco = scanf.next();
-		System.out.print("Insira o nome do Banco de Dados: ");
-		nomeBanco = scanf.next();
-		System.out.print("Insira o usuario do Banco de Dados: ");
-		usuarioBanco = scanf.next();
-		System.out.print("Insira a senha do usuario " + usuarioBanco + " : ");
-		senhaBanco = scanf.next();
-		 */
 		try{
 			conexao = DriverManager.getConnection("jdbc:mysql://"+servidorBanco+"/"+nomeBanco,usuarioBanco,senhaBanco);
 			System.out.println("");
@@ -115,7 +105,7 @@ public class Dados {
 		System.out.print("insira o nome da pessoa a ser apagada: ");
 		String nameSearch = scanf.next();
 		String sqlDelete = "DELETE FROM Clientes where nome like '%"+ nameSearch + "%';";
-		
+
 		try {
 			PreparedStatement deletaPessoa = conexao.prepareStatement(sqlDelete);
 			deletaPessoa.executeUpdate();
