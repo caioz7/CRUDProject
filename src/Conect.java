@@ -7,6 +7,6 @@ public class Conect{
 	String servidorBanco = "localhost";
 	String nomeBanco = "java";
 	String usuarioBanco = "root";
-	String senhaBanco = "";
+	String senhaBanco = "senhaPadrao";
 
 }
