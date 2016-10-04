@@ -17,7 +17,7 @@ class InterfaceGrafica extends JFrame{
 	ImageIcon imgLista = new ImageIcon(getClass().getResource("ListarImg.png"));
 	ImageIcon imgPesquisa = new ImageIcon(getClass().getResource("PesquisarImg.png"));
 	ImageIcon imgRemove = new ImageIcon(getClass().getResource("RemoverImg.png"));
-	ImageIcon background = new ImageIcon(getClass().getResource("Background.png"));
+	ImageIcon background = new ImageIcon(getClass().getResource("Background.jpg"));
 	JLabel labBack = new JLabel(background);
 	JButton buttonAdd = new JButton(imgAdd);
 	JButton buttonLista = new JButton(imgLista);
