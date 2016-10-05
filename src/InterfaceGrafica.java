@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -7,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 @SuppressWarnings("serial")
 class InterfaceGrafica extends JFrame{
@@ -23,12 +26,25 @@ class InterfaceGrafica extends JFrame{
 	JButton buttonLista = new JButton(imgLista);
 	JButton buttonRemove = new JButton(imgRemove);
 	JButton buttonPesquisa = new JButton(imgPesquisa);
+	JInternalFrame internalAdicionar = new JInternalFrame("Adicionar Registro");
+	JInternalFrame internalListar = new JInternalFrame("Listar Registros");
+	JInternalFrame internalPesquisar = new JInternalFrame("Pesquisar Registro");
+	JInternalFrame internalRemover = new JInternalFrame("Remover Registro");
 	
 	static final int RESOLUCAO_X = 1200; 
 	static final int RESOLUCAO_Y = 650; 
 	
-	JInternalFrame internalAdicionar = new JInternalFrame("Adicionar Registro");
 	public InterfaceGrafica(){
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
 		JanelaPrincipal.setLayout(null);
 
 		setSize(RESOLUCAO_X, RESOLUCAO_Y);
@@ -38,6 +54,7 @@ class InterfaceGrafica extends JFrame{
 		setTitle("CRUD");
 		labBack.setSize(RESOLUCAO_X, RESOLUCAO_Y);
 		add(desktopPane);
+		add(internalAdicionar);
 		add(buttonAdd);
 		add(buttonPesquisa);
 		add(buttonLista);
@@ -54,13 +71,22 @@ class InterfaceGrafica extends JFrame{
 		buttonRemove.setBounds(10,480,120,120);
 		buttonRemove.setContentAreaFilled(false);
 		
-		internalAdicionar.setMaximizable(false);
+		
 		internalAdicionar.setClosable(true);
+		internalAdicionar.setSize(RESOLUCAO_X-150,RESOLUCAO_Y-100);
+		internalAdicionar.setLocation(135, 20);
+		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		internalAdicionar.setBackground(Color.WHITE);
+		
+		
 		buttonAdd.addActionListener(new ActionListener() {
+			
+			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Vc clicou no botao de Adicionar!");
+				internalAdicionar.setVisible(true);
+//				JOptionPane.showMessageDialog(null, "Vc clicou no botao de Adicionar!");
 
 			}
 		});
