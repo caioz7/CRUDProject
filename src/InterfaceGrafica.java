@@ -35,16 +35,6 @@ class InterfaceGrafica extends JFrame{
 	static final int RESOLUCAO_Y = 650; 
 	
 	public InterfaceGrafica(){
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
 		JanelaPrincipal.setLayout(null);
 
 		setSize(RESOLUCAO_X, RESOLUCAO_Y);
@@ -64,20 +54,35 @@ class InterfaceGrafica extends JFrame{
 
 		buttonAdd.setBounds(10,30,120,120);;
 		buttonAdd.setContentAreaFilled(false);
+		buttonAdd.setBorderPainted(false);
+		buttonAdd.setRolloverIcon(new ImageIcon(getClass().getResource("AdicionarImgHover.png")));
+		buttonAdd.setToolTipText("Adicionar Registro");
+		
 		buttonLista.setBounds(10,180,120,120);
 		buttonLista.setContentAreaFilled(false);
+		buttonLista.setBorderPainted(false);
+		buttonLista.setRolloverIcon(new ImageIcon(getClass().getResource("ListarImgHover.png")));
+		buttonLista.setToolTipText("Listar todos os Registros");
+		
 		buttonPesquisa.setBounds(10,330,120,120);
 		buttonPesquisa.setContentAreaFilled(false);
+		buttonPesquisa.setBorderPainted(false);
+		buttonPesquisa.setRolloverIcon(new ImageIcon(getClass().getResource("PesquisarImgHover.png")));
+		buttonPesquisa.setToolTipText("Pesquisar Registros");
+		
 		buttonRemove.setBounds(10,480,120,120);
 		buttonRemove.setContentAreaFilled(false);
-		
+		buttonRemove.setBorderPainted(false);
+		buttonRemove.setRolloverIcon(new ImageIcon(getClass().getResource("RemoverImgHover.png")));
+		buttonRemove.setToolTipText("Remover Registro");
 		
 		internalAdicionar.setClosable(true);
 		internalAdicionar.setSize(RESOLUCAO_X-150,RESOLUCAO_Y-100);
 		internalAdicionar.setLocation(135, 20);
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		internalAdicionar.setBackground(Color.WHITE);
-		
+		internalAdicionar.setMaximizable(true);
+		internalAdicionar.setIconifiable(true);
 		
 		buttonAdd.addActionListener(new ActionListener() {
 			
