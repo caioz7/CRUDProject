@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 @SuppressWarnings("serial")
 class InterfaceGrafica extends JFrame{
@@ -31,10 +29,19 @@ class InterfaceGrafica extends JFrame{
 	JInternalFrame internalPesquisar = new JInternalFrame("Pesquisar Registro");
 	JInternalFrame internalRemover = new JInternalFrame("Remover Registro");
 	
+	JLabel labelNomeAdd = new JLabel("Nome:");
+	JLabel labelCpfAdd = new JLabel("CPF:");
+	JLabel labelIdadeAdd = new JLabel("Idade:");
+	JLabel labelDataNascAdd = new JLabel("Data de Nascimento:");
+	JLabel labelCidadeAdd = new JLabel("Cidade:");
+	JLabel labelEstadoAdd = new JLabel("Estado:");
+	JLabel labelPaisAdd = new JLabel("País:");
+	
 	static final int RESOLUCAO_X = 1200; 
 	static final int RESOLUCAO_Y = 650; 
 	
 	public InterfaceGrafica(){
+		repaint();
 		JanelaPrincipal.setLayout(null);
 
 		setSize(RESOLUCAO_X, RESOLUCAO_Y);
@@ -45,6 +52,7 @@ class InterfaceGrafica extends JFrame{
 		labBack.setSize(RESOLUCAO_X, RESOLUCAO_Y);
 		add(desktopPane);
 		add(internalAdicionar);
+		add(internalListar);
 		add(buttonAdd);
 		add(buttonPesquisa);
 		add(buttonLista);
@@ -57,6 +65,7 @@ class InterfaceGrafica extends JFrame{
 		buttonAdd.setBorderPainted(false);
 		buttonAdd.setRolloverIcon(new ImageIcon(getClass().getResource("AdicionarImgHover.png")));
 		buttonAdd.setToolTipText("Adicionar Registro");
+		buttonAdd.setEnabled(true);
 		
 		buttonLista.setBounds(10,180,120,120);
 		buttonLista.setContentAreaFilled(false);
@@ -76,14 +85,23 @@ class InterfaceGrafica extends JFrame{
 		buttonRemove.setRolloverIcon(new ImageIcon(getClass().getResource("RemoverImgHover.png")));
 		buttonRemove.setToolTipText("Remover Registro");
 		
+		internalAdicionar.setLayout(null);
+		internalAdicionar.add(labelNomeAdd).setBounds(1, 10,100,100);
 		internalAdicionar.setClosable(true);
-		internalAdicionar.setSize(RESOLUCAO_X-150,RESOLUCAO_Y-100);
-		internalAdicionar.setLocation(135, 20);
+		internalAdicionar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-800);
+		internalAdicionar.setLocation(145, 30);
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		internalAdicionar.setBackground(Color.WHITE);
 		internalAdicionar.setMaximizable(true);
 		internalAdicionar.setIconifiable(true);
+	//	labelNomeAdd.setBounds(50, 10,100,100);
 		
+		internalListar.setClosable(true);
+		internalListar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-100);
+		internalListar.setLocation(RESOLUCAO_X - 1445, RESOLUCAO_Y - 620);
+		internalListar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		internalListar.setBackground(Color.WHITE);
+		internalListar.setMaximizable(true);
+		internalListar.setIconifiable(true);
 		buttonAdd.addActionListener(new ActionListener() {
 			
 			
@@ -99,7 +117,8 @@ class InterfaceGrafica extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Vc clicou no botao de Listar!");
+				internalListar.setVisible(true);
+				buttonAdd.setEnabled(false);
 
 			}
 		});
