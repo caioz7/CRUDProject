@@ -1,13 +1,19 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+import com.toedter.calendar.JDateChooser;
 
 @SuppressWarnings("serial")
 class InterfaceGrafica extends JFrame{
@@ -29,20 +35,29 @@ class InterfaceGrafica extends JFrame{
 	JInternalFrame internalPesquisar = new JInternalFrame("Pesquisar Registro");
 	JInternalFrame internalRemover = new JInternalFrame("Remover Registro");
 	
-	JLabel labelNomeAdd = new JLabel("Nome:");
-	JLabel labelCpfAdd = new JLabel("CPF:");
-	JLabel labelIdadeAdd = new JLabel("Idade:");
-	JLabel labelDataNascAdd = new JLabel("Data de Nascimento:");
-	JLabel labelCidadeAdd = new JLabel("Cidade:");
-	JLabel labelEstadoAdd = new JLabel("Estado:");
-	JLabel labelPaisAdd = new JLabel("País:");
+	JLabel nomeLabel = new JLabel("Nome:");
+	JLabel cpfLabel = new JLabel("CPF:");
+	JLabel idadeLabel = new JLabel("Idade:");
+	JLabel dataNascLabel = new JLabel("Data de Nascimento:");
+	JLabel cidadeLabel = new JLabel("Cidade:");
+	JLabel estadoLabel = new JLabel("Estado:");
+	JLabel paisLabel = new JLabel("País:");
 	
+	JTextField nomeField = new JTextField();
+	JFormattedTextField cpfField = new JFormattedTextField();
+	JTextField idadeField = new JTextField();
+	JTextField dataNascField = new JTextField();
+	JTextField cidadeField = new JTextField();
+	JTextField estadoField = new JTextField();
+	JTextField paisField = new JTextField();
+	
+	JDateChooser dataChooser = new JDateChooser();
 	static final int RESOLUCAO_X = 1200; 
 	static final int RESOLUCAO_Y = 650; 
 	
 	public InterfaceGrafica(){
 		repaint();
-		JanelaPrincipal.setLayout(null);
+		JanelaPrincipal.getContentPane().setLayout(null);
 
 		setSize(RESOLUCAO_X, RESOLUCAO_Y);
 		setVisible(true);
@@ -50,14 +65,14 @@ class InterfaceGrafica extends JFrame{
 		setLocationRelativeTo(null);
 		setTitle("CRUD");
 		labBack.setSize(RESOLUCAO_X, RESOLUCAO_Y);
-		add(desktopPane);
-		add(internalAdicionar);
-		add(internalListar);
-		add(buttonAdd);
-		add(buttonPesquisa);
-		add(buttonLista);
-		add(buttonRemove);
-		add(labBack);
+		getContentPane().add(desktopPane);
+		getContentPane().add(internalAdicionar);
+		getContentPane().add(internalListar);
+		getContentPane().add(buttonAdd);
+		getContentPane().add(buttonPesquisa);
+		getContentPane().add(buttonLista);
+		getContentPane().add(buttonRemove);
+		getContentPane().add(labBack);
 		//		JanelaPrincipal.setUndecorated(true);
 
 		buttonAdd.setBounds(10,30,120,120);;
@@ -85,43 +100,65 @@ class InterfaceGrafica extends JFrame{
 		buttonRemove.setRolloverIcon(new ImageIcon(getClass().getResource("RemoverImgHover.png")));
 		buttonRemove.setToolTipText("Remover Registro");
 		
-		internalAdicionar.setLayout(null);
-		internalAdicionar.add(labelNomeAdd).setBounds(1, 10,100,100);
+		internalAdicionar.getContentPane().setLayout(null);
 		internalAdicionar.setClosable(true);
-		internalAdicionar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-800);
-		internalAdicionar.setLocation(145, 30);
+		internalAdicionar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-100);
+		internalAdicionar.setLocation(RESOLUCAO_X - 1045, RESOLUCAO_Y - 620);
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		internalAdicionar.setMaximizable(true);
 		internalAdicionar.setIconifiable(true);
-	//	labelNomeAdd.setBounds(50, 10,100,100);
+		internalAdicionar.add(nomeLabel).setBounds(30, 10,40,100);
+		internalAdicionar.add(nomeField).setBounds(70, 48, 500, 30);
+		internalAdicionar.add(idadeLabel).setBounds(600, 48, 40, 30);
+		internalAdicionar.add(idadeField).setBounds(638, 48, 40, 30);
+		internalAdicionar.add(cpfLabel).setBounds(30, 148, 40, 30);
+		internalAdicionar.add(cpfField).setBounds(70, 148, 200, 30);
+		internalAdicionar.add(dataNascLabel).setBounds(320, 148, 150, 30);
+		internalAdicionar.add(dataChooser).setBounds(450, 148, 100, 30);
+		internalAdicionar.add(cidadeLabel).setBounds(30,248,100,30);
+		internalAdicionar.add(cidadeField).setBounds(80, 248, 200, 30);
+		internalAdicionar.add(estadoLabel).setBounds(300,248,100,30);
+		internalAdicionar.add(estadoField).setBounds(350,248,100,30);
+		internalAdicionar.add(paisLabel).setBounds(480,248,100,30);
+		internalAdicionar.add(paisField).setBounds(520,248,100,30);
+		
+		MaskFormatter maskData;	
+		try {
+			maskData = new MaskFormatter("###.###.###-##");
+			maskData.install(cpfField);
+			
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		internalListar.setClosable(true);
 		internalListar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-100);
-		internalListar.setLocation(RESOLUCAO_X - 1445, RESOLUCAO_Y - 620);
+		internalListar.setLocation(RESOLUCAO_X - 1045, RESOLUCAO_Y - 620);
 		internalListar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		internalListar.setBackground(Color.WHITE);
 		internalListar.setMaximizable(true);
 		internalListar.setIconifiable(true);
+		
 		buttonAdd.addActionListener(new ActionListener() {
-			
-			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				repaint();
 				internalAdicionar.setVisible(true);
-//				JOptionPane.showMessageDialog(null, "Vc clicou no botao de Adicionar!");
-
+				//JOptionPane.showMessageDialog(null, "Vc clicou no botao de Adicionar!");
 			}
 		});
+		
 		buttonLista.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				internalListar.setVisible(true);
-				buttonAdd.setEnabled(false);
 
 			}
 		});
+		
 		buttonPesquisa.addActionListener(new ActionListener() {
 
 			@Override
@@ -130,6 +167,7 @@ class InterfaceGrafica extends JFrame{
 
 			}
 		});
+		
 		buttonRemove.addActionListener(new ActionListener() {
 
 			@Override
@@ -138,6 +176,6 @@ class InterfaceGrafica extends JFrame{
 
 			}
 		});
+		
 	}
-
 }
