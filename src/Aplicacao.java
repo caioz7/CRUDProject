@@ -1,6 +1,6 @@
 /**
  * @Resumo Classe principal da aplicacao
- * @author caio.dantas
+ * @author caio
  */
 public class Aplicacao {
 
