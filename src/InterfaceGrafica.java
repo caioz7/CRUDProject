@@ -156,7 +156,7 @@ class InterfaceGrafica extends JFrame{
 				//verificando se os jtextfields estao vazios
 				if((nomeField.getText().trim().equals("")) 
 						|| cpfField.getText().trim().equals("") 
-						|| dataChooser.equals("") 
+						|| dataChooser.getDate() == null
 						|| idadeField.getText().trim().equals("") 
 						|| cidadeField.getText().trim().equals("") 
 						|| estadoField.getText().trim().equals("")
