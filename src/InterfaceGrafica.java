@@ -40,7 +40,7 @@ class InterfaceGrafica extends JFrame{
 	JLabel nomeLabel = new JLabel("Nome:");
 	JLabel cpfLabel = new JLabel("CPF:");
 	JLabel idadeLabel = new JLabel("Idade:");
-	JLabel dataNascLabel = new JLabel("Data de Nascimento(DD/MM/AAAA): ");
+	JLabel dataNascLabel = new JLabel("Data de Nasc.(DD/MM/AAAA):");
 	JLabel cidadeLabel = new JLabel("Cidade:");
 	JLabel estadoLabel = new JLabel("Estado:");
 	JLabel paisLabel = new JLabel("País:");
@@ -118,28 +118,28 @@ class InterfaceGrafica extends JFrame{
 		
 		internalAdicionar.getContentPane().setLayout(null);
 		internalAdicionar.setClosable(true);
-		internalAdicionar.setSize(RESOLUCAO_X-400,RESOLUCAO_Y-250);
+		internalAdicionar.setSize(RESOLUCAO_X-400,RESOLUCAO_Y-400);
 		internalAdicionar.setLocation(RESOLUCAO_X - 945, RESOLUCAO_Y - 500);
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		internalAdicionar.setMaximizable(true);
 		internalAdicionar.setIconifiable(true);
 		
 		//Adicionando jlabels e jtextfields, ainda precisam ser melhorados!
-		internalAdicionar.add(nomeLabel).setBounds(30, 10,40,100);
-		internalAdicionar.add(nomeField).setBounds(70, 48, 350, 30);
-		internalAdicionar.add(idadeLabel).setBounds(450, 48, 40, 30);
-		internalAdicionar.add(idadeField).setBounds(488, 48, 40, 30);
-		internalAdicionar.add(cpfLabel).setBounds(30, 148, 40, 30);
-		internalAdicionar.add(cpfField).setBounds(70, 148, 200, 30);
-		internalAdicionar.add(dataNascLabel).setBounds(320, 148, 250, 30);
-		internalAdicionar.add(dataChooser).setBounds(522, 148, 100, 30);
-		internalAdicionar.add(cidadeLabel).setBounds(30,248,100,30);
-		internalAdicionar.add(cidadeField).setBounds(80, 248, 200, 30);
-		internalAdicionar.add(estadoLabel).setBounds(300,248,100,30);
-		internalAdicionar.add(estadoField).setBounds(350,248,100,30);
-		internalAdicionar.add(paisLabel).setBounds(480,248,100,30);
-		internalAdicionar.add(paisField).setBounds(520,248,100,30);
-		internalAdicionar.add(buttonSalvar).setBounds(680, 250, 75,	75);;
+		internalAdicionar.add(nomeLabel)    .setBounds(30, 30,40,22);
+		internalAdicionar.add(nomeField)    .setBounds(70, 30, 300, 22);
+		internalAdicionar.add(idadeLabel)   .setBounds(380, 30, 40, 22);
+		internalAdicionar.add(idadeField)   .setBounds(418, 30, 40, 22);
+		internalAdicionar.add(cpfLabel)     .setBounds(30, 70, 40, 22);
+		internalAdicionar.add(cpfField)     .setBounds(70, 70, 100, 22);
+		internalAdicionar.add(dataNascLabel).setBounds(175, 70, 250, 22);
+		internalAdicionar.add(dataChooser)  .setBounds(340, 70, 100, 22); //-165
+		internalAdicionar.add(cidadeLabel)  .setBounds(30,110,100,22);
+		internalAdicionar.add(cidadeField)  .setBounds(80, 110, 150, 22);
+		internalAdicionar.add(estadoLabel)  .setBounds(250,110,100,22);
+		internalAdicionar.add(estadoField)  .setBounds(300,110,100,22); //-50
+		internalAdicionar.add(paisLabel)    .setBounds(480,110,100,22);
+		internalAdicionar.add(paisField)    .setBounds(520,110,100,22);
+		internalAdicionar.add(buttonSalvar) .setBounds(680, 110, 75,75);
 
 		MaskFormatter maskData;	
 		try {
