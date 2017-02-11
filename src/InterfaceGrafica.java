@@ -15,9 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import com.toedter.calendar.JDateChooser;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
+import sun.invoke.empty.Empty;
+
 @SuppressWarnings("serial")
 class InterfaceGrafica extends JFrame{
-	
+	Funcoes funcoes = new Funcoes();
 	JFrame JanelaPrincipal = new JFrame();
 	JDesktopPane desktopPane = new JDesktopPane();
 	JLabel labBack = new JLabel(new ImageIcon(getClass().getResource("Background.jpg")));
@@ -107,7 +110,8 @@ class InterfaceGrafica extends JFrame{
 		buttonRemove.setRolloverIcon(new ImageIcon(getClass().getResource("RemoverImgHover.png")));
 		buttonRemove.setToolTipText("Remover Registro");
 		
-		buttonSalvar.setRolloverIcon(new ImageIcon(getClass().getResource("SaveImgHover.png")));
+		//buttonSalvar.setRolloverIcon(new ImageIcon(getClass().getResource("SaveImgHover.png")));
+		buttonSalvar.setPressedIcon(new ImageIcon(getClass().getResource("SaveImgHover.png")));
 		buttonSalvar.setToolTipText("Salvar registro");
 		buttonSalvar.setContentAreaFilled(false);
 		buttonSalvar.setBorderPainted(false);
@@ -143,6 +147,24 @@ class InterfaceGrafica extends JFrame{
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+		buttonSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if((nomeField.getText().trim().equals("")) 
+						|| cpfField.getText().trim().equals("") 
+						|| dataChooser.equals("") 
+						|| idadeField.getText().trim().equals("") 
+						|| cidadeField.getText().trim().equals("") 
+						|| estadoField.getText().trim().equals("")
+						|| nomeField.getText().trim().equals("")
+						|| paisField.getText().trim().equals("")){
+					JOptionPane.showMessageDialog(null, "Por favor, insira todos os dados");
+				}else
+				funcoes.InsereDados(nomeField, cpfField, dataChooser, idadeField, cidadeField, estadoField, paisField);
+				
+			}
+		});
 		
 		internalListar.setClosable(true);
 		internalListar.setSize(RESOLUCAO_X-170,RESOLUCAO_Y-100);

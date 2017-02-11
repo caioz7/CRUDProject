@@ -5,10 +5,10 @@
 public class Aplicacao {
 
 	public static void main(String[] args) {
-//		Dados d = new Dados();
-//		Conect conecta = new Conect();
+		Dados d = new Dados();
+		Conect conecta = new Conect();
 //		InterfaceGrafica interfaceGrafica = new InterfaceGrafica();
-//		d.StartConnection(conecta.servidorBanco,conecta.nomeBanco,conecta.usuarioBanco, conecta.senhaBanco);
-		new InterfaceGrafica();
+		d.StartConnection(conecta.servidorBanco,conecta.nomeBanco,conecta.usuarioBanco, conecta.senhaBanco);
+		//new InterfaceGrafica();
 	}
 }

@@ -17,8 +17,9 @@ public class Dados {
 		try{
 			Class.forName("com.mysql.jdbc.Driver"); // essa linha pode resolver o problema
 			conexao = DriverManager.getConnection("jdbc:mysql://"+servidorBanco+"/"+nomeBanco,usuarioBanco,senhaBanco);
-			System.out.println("");
-			OpenMainMenu();
+
+			//OpenMainMenu();
+			new InterfaceGrafica();
 
 		}catch(Exception e){
 			System.err.println("Falha na conexao!"); 
