@@ -123,6 +123,8 @@ class InterfaceGrafica extends JFrame{
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		internalAdicionar.setMaximizable(true);
 		internalAdicionar.setIconifiable(true);
+		
+		//Adicionando jlabels e jtextfields, ainda precisam ser melhorados!
 		internalAdicionar.add(nomeLabel).setBounds(30, 10,40,100);
 		internalAdicionar.add(nomeField).setBounds(70, 48, 350, 30);
 		internalAdicionar.add(idadeLabel).setBounds(450, 48, 40, 30);
@@ -151,6 +153,7 @@ class InterfaceGrafica extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//verificando se os jtextfields estao vazios
 				if((nomeField.getText().trim().equals("")) 
 						|| cpfField.getText().trim().equals("") 
 						|| dataChooser.equals("") 
@@ -161,8 +164,7 @@ class InterfaceGrafica extends JFrame{
 						|| paisField.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "Por favor, insira todos os dados");
 				}else
-				funcoes.InsereDados(nomeField, cpfField, dataChooser, idadeField, cidadeField, estadoField, paisField);
-				
+				funcoes.InsereDados(nomeField, cpfField, dataChooser, idadeField, cidadeField, estadoField, paisField);				
 			}
 		});
 		
