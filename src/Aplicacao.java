@@ -6,9 +6,9 @@ public class Aplicacao {
 
 	public static void main(String[] args) {
 		Dados d = new Dados();
-		Conect conecta = new Conect();
+		Connect conecta = new Connect();
 //		InterfaceGrafica interfaceGrafica = new InterfaceGrafica();
 		d.StartConnection(conecta.servidorBanco,conecta.nomeBanco,conecta.usuarioBanco, conecta.senhaBanco);
-		//new InterfaceGrafica();
+		new InterfaceGrafica();
 	}
 }

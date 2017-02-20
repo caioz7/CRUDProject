@@ -1,34 +1,46 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 /**
  * @author caio.dantas
  * @Resumo Classe responsavel pola conexao com o servidor MySQL e manipulacao dos dados.
  */
 public class Dados {
-
+	PreparedStatement pesquisa;
 	Scanner scanf = new Scanner(System.in);
 	Connection conexao;
 
 	public void StartConnection(String servidorBanco, String nomeBanco, String usuarioBanco, String senhaBanco){
 		try{
+			
 			Class.forName("com.mysql.jdbc.Driver"); // essa linha pode resolver o problema
 			conexao = DriverManager.getConnection("jdbc:mysql://"+servidorBanco+"/"+nomeBanco,usuarioBanco,senhaBanco);
+			
+			
+			/*pesquisa = conexao.prepareStatement("select * from Pessoas");
+			ResultSet resultado = pesquisa.executeQuery();
+			while(resultado.next()){
+				String nome = resultado.getString("nome");
 
+				String idade = resultado.getString("idade");
+				System.out.println("Nome: " + nome + "\tIdade: " + idade);
+			}*/
+			//new InterfaceGrafica();
 			//OpenMainMenu();
-			new InterfaceGrafica();
-
+		
 		}catch(Exception e){
+			
+			JOptionPane.showMessageDialog(null, "Falha na conexao com o Banco de dados/n" + e.getMessage());
 			System.err.println("Falha na conexao!"); 
-			System.err.println(e.getMessage()); 
+			System.err.println(e.getMessage());
 			System.exit(0);
 		}
 	}
 
-	public void CreateData(){
+	public void CreateData(){/*
 		try{
 			System.out.print("Insira o nome do Cliente: ");
 			scanf.nextLine();
@@ -42,10 +54,10 @@ public class Dados {
 			System.err.print("Fail!"); 
 			System.err.println(e.getMessage()); 
 		}
-		OpenMainMenu();
+		OpenMainMenu();*/
 	}
 
-	public void ReadData(){
+	public void ReadData(){/*
 		PreparedStatement pesquisa;
 		try {
 			pesquisa = conexao.prepareStatement("select * from Clientes");
@@ -60,10 +72,10 @@ public class Dados {
 			System.err.println("Fail!");
 			e.getMessage();
 		}
-		OpenMainMenu();
+		OpenMainMenu();*/
 	}
 
-	public void SearchData(){
+	public void SearchData(){/*
 		PreparedStatement pesquisa;
 		System.out.println("insira o nome da Pessoa a ser pesquisada");
 		String nameSearch = scanf.next();
@@ -80,10 +92,10 @@ public class Dados {
 		}catch (Exception e) {
 			System.err.println("Nome nao encontrado!");
 			e.getMessage();
-		}
+		}*/
 
 	}
-	public void UpdateData(String nome){
+	public void UpdateData(String nome){/*
 		System.out.print("Insira um novo nome: ");
 		scanf.nextLine();
 		String novoNome = scanf.nextLine();
@@ -98,10 +110,10 @@ public class Dados {
 			e.getMessage();
 		}
 		System.out.println("Atualizado com sucesso!\n");
-		OpenMainMenu();
+		OpenMainMenu();*/
 	}
 
-	public void DeleteData(){
+	public void DeleteData(){/*
 
 		System.out.print("insira o nome da pessoa a ser apagada: ");
 		String nameSearch = scanf.next();
@@ -115,10 +127,10 @@ public class Dados {
 			e.getMessage();
 		}
 		System.out.println("Apagado com sucesso!\n");
-		OpenMainMenu();
+		OpenMainMenu();*/
 	}
 
-	public void OpenMainMenu(){
+	public void OpenMainMenu(){/*
 		System.out.print("\n|1 - Inserir novos dados\n|2 - Listar dados\n|3 - Atualizar dados\n|4 - Deletar Dados\n|5 - Sair\nInsira a opcao desejada: ");
 		int op = scanf.nextInt();
 		System.out.println("");
@@ -136,6 +148,6 @@ public class Dados {
 		break;
 		default: System.err.println("Opcao invalida");
 		break;
-		}
+		}*/
 	}
 }

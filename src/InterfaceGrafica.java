@@ -15,9 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import com.toedter.calendar.JDateChooser;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
-import sun.invoke.empty.Empty;
-
 @SuppressWarnings("serial")
 class InterfaceGrafica extends JFrame{
 	Funcoes funcoes = new Funcoes();
@@ -55,13 +52,14 @@ class InterfaceGrafica extends JFrame{
 	
 	JDateChooser dataChooser = new JDateChooser();
 	
+	//Resolucao da janela principal
 	static final int RESOLUCAO_X = 1200; 
 	static final int RESOLUCAO_Y = 650; 
 	
 	public InterfaceGrafica(){
 		repaint();
 		JanelaPrincipal.getContentPane().setLayout(null);
-
+		//setUndecorated(true);
 		setSize(RESOLUCAO_X, RESOLUCAO_Y);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +67,8 @@ class InterfaceGrafica extends JFrame{
 		setTitle("CRUD");
 		labBack.setSize(RESOLUCAO_X, RESOLUCAO_Y);
 		JanelaPrincipal.setUndecorated(true);
+		
+		//Adicionando componentes na Janela principal
 		getContentPane().add(desktopPane);
 		getContentPane().add(internalAdicionar);
 		getContentPane().add(internalListar);
@@ -116,30 +116,30 @@ class InterfaceGrafica extends JFrame{
 		buttonSalvar.setContentAreaFilled(false);
 		buttonSalvar.setBorderPainted(false);
 		
-		internalAdicionar.getContentPane().setLayout(null);
+		internalAdicionar.setLayout(null);
 		internalAdicionar.setClosable(true);
-		internalAdicionar.setSize(RESOLUCAO_X-400,RESOLUCAO_Y-400);
+		internalAdicionar.setSize(RESOLUCAO_X-600,RESOLUCAO_Y-400);
 		internalAdicionar.setLocation(RESOLUCAO_X - 945, RESOLUCAO_Y - 500);
 		internalAdicionar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		internalAdicionar.setMaximizable(true);
+		internalAdicionar.setMaximizable(false);
 		internalAdicionar.setIconifiable(true);
 		
 		//Adicionando jlabels e jtextfields, ainda precisam ser melhorados!
-		internalAdicionar.add(nomeLabel)    .setBounds(30, 30,40,22);
-		internalAdicionar.add(nomeField)    .setBounds(70, 30, 300, 22);
-		internalAdicionar.add(idadeLabel)   .setBounds(380, 30, 40, 22);
+		internalAdicionar.add(nomeLabel)	.setBounds(30, 30,40,22);
+		internalAdicionar.add(nomeField)	.setBounds(70, 30, 300, 22);
+		internalAdicionar.add(idadeLabel)	.setBounds(380, 30, 40, 22);
 		internalAdicionar.add(idadeField)   .setBounds(418, 30, 40, 22);
 		internalAdicionar.add(cpfLabel)     .setBounds(30, 70, 40, 22);
 		internalAdicionar.add(cpfField)     .setBounds(70, 70, 100, 22);
-		internalAdicionar.add(dataNascLabel).setBounds(175, 70, 250, 22);
-		internalAdicionar.add(dataChooser)  .setBounds(340, 70, 100, 22); //-165
+//		internalAdicionar.add(dataNascLabel).setBounds(175, 70, 250, 22);
+//		internalAdicionar.add(dataChooser)  .setBounds(340, 70, 100, 22); //-165
 		internalAdicionar.add(cidadeLabel)  .setBounds(30,110,100,22);
 		internalAdicionar.add(cidadeField)  .setBounds(80, 110, 150, 22);
 		internalAdicionar.add(estadoLabel)  .setBounds(250,110,100,22);
 		internalAdicionar.add(estadoField)  .setBounds(300,110,100,22); //-50
-		internalAdicionar.add(paisLabel)    .setBounds(480,110,100,22);
-		internalAdicionar.add(paisField)    .setBounds(520,110,100,22);
-		internalAdicionar.add(buttonSalvar) .setBounds(680, 110, 75,75);
+//		internalAdicionar.add(paisLabel)    .setBounds(480,110,100,22);
+//		internalAdicionar.add(paisField)    .setBounds(520,110,100,22);
+		internalAdicionar.add(buttonSalvar) .setBounds(450, 110, 75,75);
 
 		MaskFormatter maskData;	
 		try {
@@ -149,22 +149,37 @@ class InterfaceGrafica extends JFrame{
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+		
+		//Salvando Dados inseridos
 		buttonSalvar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String nome = nomeField.getText();
+				String cpf = cpfField.getText();
+				int idade = Integer.parseInt(idadeField.getText());
+				String cidade = cidadeField.getText();
+				String estado = estadoField.getText();
+				System.out.println("Nome: " + nome);
 				//verificando se os jtextfields estao vazios
-				if((nomeField.getText().trim().equals("")) 
+				/*if((nomeField.getText().trim().equals("")) 
 						|| cpfField.getText().trim().equals("") 
 						|| dataChooser.getDate() == null
 						|| idadeField.getText().trim().equals("") 
 						|| cidadeField.getText().trim().equals("") 
 						|| estadoField.getText().trim().equals("")
-						|| nomeField.getText().trim().equals("")
-						|| paisField.getText().trim().equals("")){
+						|| nomeField.getText().trim().equals(""))
+				{
 					JOptionPane.showMessageDialog(null, "Por favor, insira todos os dados");
-				}else
-				funcoes.InsereDados(nomeField, cpfField, dataChooser, idadeField, cidadeField, estadoField, paisField);				
+				}else*/
+				try {
+					
+					funcoes.InsereDados(nome, cpf, idade, cidade, estado);	
+				} catch (Exception e2) {
+					System.out.println(e2.getMessage());
+				}
+				System.out.println("botao ok");	
+				//System.out.println("NOme" + nomeField + cpfField + "\n" + dataChooser + idadeField + "\n" + cidadeField + estadoField);
 			}
 		});
 		
